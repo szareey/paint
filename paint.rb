@@ -1,19 +1,28 @@
+
 def calcCost(x, y, colours)
-  if colours <= 2
-    cost = 10
+  taxes = 1.15
+  colourPriceBreak = 2
+  paintCostMin = 10
+  paintCostMax = 15
+  costSqFt = 15
+  
+  if colours <= colourPriceBreak
+    cost = paintCostMin
   else
-    cost = 15
+    cost = paintCostMax
   end
-  cost = (cost + x*y*15) * 1.15
+  cost = (cost + x*y*costSqFt) * taxes
 end
 
+def getInfo
+  puts 'What length of the sign?'
+  signLength = gets.chomp.to_i
+  puts 'What is the width of the sign?'
+  signWidth = gets.chomp.to_i
+  puts 'How many colours will you use?'
+  colourCount = gets.chomp.to_i
+  puts "The sign will cost $#{calcCost(signLength, signWidth, colourCount)}"
+end
 
-
-puts 'What length of the sign?'
-signLength = gets.chomp.to_i
-puts 'What is the width of the sign?'
-signWidth = gets.chomp.to_i
-puts 'How many colours will you use?'
-colourCount = gets.chomp.to_i
-
-puts "The sign will cost $#{calcCost(signLength, signWidth, colourCount)}"
+puts '*** Welcome to the Paint Pro Paint Cost Calculator Extravagenza ***'
+getInfo
